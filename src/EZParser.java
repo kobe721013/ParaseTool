@@ -28,6 +28,10 @@ public class EZParser {
 		     		menuReaderCommand.put(3, "3.PPR_SignOn_Resp");
 		     		menuReaderCommand.put(4, "4.PPR_SignOn_Query_Req");	   	     
 		     		menuReaderCommand.put(5, "5.PPR_SignOn_Query_Resp");
+		     		menuReaderCommand.put(6, "6.PPR_Txn_Offline_Req");	   	     
+		     		menuReaderCommand.put(7, "7.PPR_Txn_Offline_Resp");
+		     		menuReaderCommand.put(8, "8.PPR_AuthTxn_Offline_Req");	   	     
+		     		menuReaderCommand.put(9, "9.PPR_AuthTxn_Offline_Resp");
 		     						
 					pReader.setCommandType((byte)userMenu.getChoice(menuReaderCommand));					
 					

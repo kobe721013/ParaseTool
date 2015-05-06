@@ -10,7 +10,11 @@ public class ParseReader {
 		PPR_SIGNON_REQ,
 		PPR_SIGNON_RESP,
 		PPR_SIGNON_QUERY_REQ,
-		PPR_SIGNON_QUERY_RESP
+		PPR_SIGNON_QUERY_RESP,
+		PPR_TXN_OFFLINE_REQ,
+		PPR_TXN_OFFLINE_RESP,
+		PPR_AUTHTXN_OFFLINE_REQ,
+		PPR_AUTHTXN_OFFLINE_RESP,
 	}
 	private class SubField
 	{
@@ -211,12 +215,137 @@ public class ParseReader {
 						new SubField(3,"Cancel Credit Quota"),
 						new SubField(2,"StatusCode"),
 						new SubField(1,"Le"),
-					};
-			
-			
+					};					
 			break;
 			
+			
+			case PPR_TXN_OFFLINE_REQ:
 				
+				fields = new SubField[]{
+						new SubField(3,"Total Length"),
+						new SubField(5,"Header"),						
+						new SubField(1,"MsgType"),
+						new SubField(1,"SubType"),
+						new SubField(10,"TM Location ID"),
+						new SubField(2,"TM ID"),
+						new SubField(14,"TM Txn Date Time"),
+						new SubField(6,"TM Serial Number"),
+						new SubField(4,"TM Agent Number"),
+						new SubField(4,"Txn Date Time"),
+						new SubField(3,"Txn AMT"),
+						new SubField(1,"Read Purse Flag"),
+						new SubField(2,"New Refund Fee"),
+						new SubField(2,"Broken Fee"),
+						new SubField(2,"Customer Fee"),
+						new SubField(1,"LCD Control Flag"),
+						new SubField(11,"RFU"),						
+						new SubField(1,"Le"),
+					};
+				
+				break;
+			case PPR_TXN_OFFLINE_RESP:
+				fields = new SubField[]{
+						new SubField(3,"Total Length"),						
+						new SubField(1,"Purse Version Number"),
+						new SubField(1,"Purse Usage Control"),
+						new SubField(3,"Single Auto-Load Txn Amt"),
+						new SubField(8,"PID"),
+						new SubField(1,"CPU Admin. Key KVN"),
+						new SubField(1,"Credit Key KVN"),
+						new SubField(1,"Signature Key KVN"),
+						new SubField(1,"CPU Issuer Key KVN/Debit Key KVN"),
+						new SubField(3,"CTC"),
+						new SubField(1,"TM(Txn Mode)"),
+						new SubField(1,"TQ(Txn Qualifier)"),
+						new SubField(2,"Sub Area Code"),
+						new SubField(4,"Purse Exp.Date"),
+						
+						new SubField(3,"Purse Balance Before TXN"),
+						new SubField(3,"TXN SN.Before TXN"),
+						new SubField(1,"Card Type"),
+						new SubField(1,"Personal Profile"),
+						new SubField(4,"Profile Exp.Date"),
+						
+						new SubField(1,"Area Code"),
+						new SubField(7,"Card Physical ID"),
+						new SubField(1,"Card Physical ID Len."),
+						new SubField(3,"TXN AMT"),
+						new SubField(1,"Spec.Version No."),
+						
+						new SubField(6,"Reader FW Version"),
+						new SubField(4,"Device ID"),
+						new SubField(6,"New Device ID"),
+						new SubField(1,"Service Provider ID"),						
+						new SubField(3,"New Service Provider ID"),
+						
+						new SubField(1,"Location ID"),
+						new SubField(2,"New Location ID"),
+						new SubField(3,"Deposit"),
+						new SubField(1,"Issuer ID"),						
+						new SubField(1,"Bank Code"),
+						
+						new SubField(1,"CPD Read Flag"),
+						new SubField(16,"CPD/SAM ID"),
+						new SubField(8,"CPD RAN/SAM CRN"),
+						new SubField(1,"CPD KVN/SAM KVN"),						
+						new SubField(8,"SID/S-TAC"),
+						
+						new SubField(6,"TM Serial No."),
+						new SubField(33,"Last Credit TXN Log"),
+						new SubField(16,"SVCrypto"),
+						new SubField(1,"MsgType"),						
+						new SubField(1,"Subtype"),
+						
+						new SubField(3,"Card One Day Quota"),
+						new SubField(2,"Card One Day Quota Date"),
+						new SubField(3,"TSQN"),
+						new SubField(3,"Purse Balance"),						
+						new SubField(2,"Confirm Code"),
+						
+						new SubField(16,"SIGN"),
+						new SubField(8,"SID"),
+						new SubField(18,"MAC/HCrypto"),
+						new SubField(4,"Txn Date Time"),						
+						new SubField(19,"RFU"),
+					
+						new SubField(2,"StatusCode"),
+						new SubField(1,"Le"),
+					};	
+				
+				break;
+				
+			case PPR_AUTHTXN_OFFLINE_REQ:
+				
+				fields = new SubField[]{
+						new SubField(3,"Total Length"),
+						new SubField(5,"Header"),						
+						new SubField(16,"HVCrypto/H-TAC"),
+						new SubField(1,"LCD Control Flag"),						
+						new SubField(5,"RFU"),						
+						new SubField(1,"Le"),
+					};
+				
+				break;	
+				
+			case PPR_AUTHTXN_OFFLINE_RESP:
+				fields = new SubField[]{
+						new SubField(3,"Total Length"),
+						new SubField(3,"TSQN"),
+						new SubField(3,"Purse Balance"),
+						new SubField(2,"Confirm Code"),
+						new SubField(16,"SIGN"),						
+						new SubField(8,"SID"),
+						new SubField(18,"MAC/HCrypto"),
+						new SubField(4,"TXN Date Time"),
+						new SubField(3,"Card One Day Quota"),
+						new SubField(2,"Card One Day Quota Date"),
+						new SubField(5,"RFU"),
+						new SubField(2,"StatusCode"),
+						new SubField(1,"Le"),
+						
+				};
+						
+				break;
 				
 			default:
 				result = false;
